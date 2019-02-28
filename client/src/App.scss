@@ -1,0 +1,15 @@
+.chat-wrapper {
+  .chat {
+    display: flex;
+    flex-direction: column;
+    .messages {
+      list-style-type: none;
+      li {
+        padding: 5px 10px;
+      }
+    }
+    width: 100vw;
+    height: auto;
+  }
+  .message-box {}
+}

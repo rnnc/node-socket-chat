@@ -1,0 +1,14 @@
+.scrollbar-container {
+  .ps__rail-y, &.ps--clicking {
+    /* opacity: 0; */
+    position: absolute;
+    display: flex;
+    background-color: transparent;
+    &:hover{
+      background-color: transparent;
+    }
+  }
+  .ps__thumb-y {
+    left: 97.5vw;
+  }
+}

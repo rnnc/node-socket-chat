@@ -11,6 +11,7 @@ class App extends Component {
       username: null,
       lastChatUser: null
     }
+    
   }
 
   componentDidMount() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-/* import Messages from './Components/Messages'; */
+import ChatMessage from './Components/ChatMessage';
 
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -12,56 +12,44 @@ export default class Chatroom extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: [
-        'lorem',
-        'ipsum',
-        'dolor',
-        'consectetur',
-        'adipiscing',
-        'curabitur',
-        'hendrerit',
-        'libero',
-        'eleifend',
-        'blandit',
-        'ornare',
-        'gravida',
-        'imperdiet',
-        'nullam',
-        'purus',
-        'lacinia',
-        'pretium',
-        'congue',
-        'praesent',
-        'sagittis',
-        'laoreet',
-        'auctor',
-        'mauris',
-        'velit',
-      ],
       chat_messages: sample_chat
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
-
+    this.submitMessage = this.submitMessage.bind(this);
+    this.scrollToDown = this.scrollToDown.bind(this);
+    this.scrollbars = React.createRef();
   }
 
-  handleSubmit(e) {
+  componentDidMount() {
+    this.scrollToDown();
+  }
+
+  submitMessage(e) {
     e.preventDefault();
+
     const message_val = this.refs.msg.value;
 
     if (message_val)
-      this.addNewMessages(message_val)
+      this.setState({
+        chat_messages: this.state.chat_messages.concat([{
+          username: this.props.username,
+          text: message_val
+        }])
+      }, () => {
+        this.refs.msg.value = '';
+      });
 
-    this.refs.msg.value = '';
+    this.scrollToDown();
   }
 
-  addNewMessages(message) {
-    const nMessages = [...this.state.messages, message];
-    this.setState({ messages: nMessages });
+  scrollToDown() {
+    setTimeout(() => {
+      this.scrollbars.scrollTop = this.scrollbars.scrollHeight;
+    }, 10);
   }
 
   render() {
 
-    const { messages } = this.state;
+    const { chat_messages } = this.state;
     const { username } = this.props;
 
     return (
@@ -70,20 +58,21 @@ export default class Chatroom extends Component {
           Username : { username }
         </div>
 
-        <div className="chat">
-
-          <PerfectScrollbar>
-            <ul className="messages">
-              { messages.map((msg, i) => (
-                <li key={ i }>{ msg }</li>
-              )) }
+        <div className="chat" >
+          <PerfectScrollbar
+            option={ { minScrollbarLength: 25, maxScrollbarLength: 50 } }
+            containerRef={ (ref) => { this.scrollbars = ref } }
+          >
+            <ul className="messages"  >
+              { chat_messages.map(message =>
+                <ChatMessage>{ message }</ChatMessage>
+              ) }
             </ul>
-
           </PerfectScrollbar>
         </div>
 
         <div className="composer">
-          <form onSubmit={ this.handleSubmit } className="message-form">
+          <form onSubmit={ this.submitMessage } className="message-form">
             <input type="text" maxLength={ 250 }
               autoComplete="off"
               ref="msg"

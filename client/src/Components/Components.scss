@@ -1,0 +1,13 @@
+.login-button {
+  background: green;
+}
+
+.main-chat-input {
+  transition: box-shadow 0.5s;
+  &.online {
+    box-shadow: 0 0 5px 2px green;
+  }
+  &.offline {
+    box-shadow: 0 0 5px 2px red;
+  }
+}

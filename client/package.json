@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "node-sass": "^4.11.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-perfect-scrollbar": "^1.4.4",
     "react-redux": "^6.0.1",
     "react-scripts": "2.1.5",
     "redux": "^4.0.1",
-    "redux-saga": "^1.0.2",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
     "socket.io-client": "^2.2.0"
   },
   "scripts": {
@@ -27,5 +27,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0"
+  }
 }

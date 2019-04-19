@@ -4,19 +4,23 @@ const Schema = mongoose.Schema;
 const UserSchema = ({
   name: {
     type: String,
-    require: true
+    required: true
   },
-  joinedDate: {
-    type: Date,
-    require: true,
-    default: Date.now
+  password: {
+    type: String,
+    required: true
   },
   email: {
     type: String
   },
+  joinedDate: {
+    type: Date,
+    required: true,
+    default: Date.now
+  },
   messagesSent: {
     type: Number,
-    require: true,
+    required: true,
     default: 0
   }
 });

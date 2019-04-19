@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 const app = express();
 const server = http.createServer(app);
 
+require('dotenv').config();
+
 const {
   SOCKET_INIT_CHAT,
   SOCKET_CONNECTED,
@@ -31,17 +33,14 @@ app.use(cors());
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 })
  */
+
 /* DB CONNECTION */
 
-const db = require('./config').db;
-
-// UNCOMMMENT TO CONNECT TO DB
-
-/* mongoose
-  .connect(db, { useNewUrlParser: true })
+mongoose
+  .connect(process.env.MONG_URI, { useNewUrlParser: true })
   .then((promise) => {
-    console.log('CONNECTED TO DB (MONGO)')
-  }, err => console.log(`Error connectign to database`, err)); */
+    console.log('Connected to DB (Mongo)')
+  }, err => console.log(`Error connecting to database\n${err}`));
 
 /* Temporary Store */
 

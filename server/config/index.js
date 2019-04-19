@@ -1,1 +1,0 @@
-module.exports.db = "mongodb://admin:adminpass123@ds123635.mlab.com:23635/simpchat";

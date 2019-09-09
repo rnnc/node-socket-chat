@@ -1,4 +1,4 @@
-module.exports.default = value => (
+module.exports = value => (
   value === undefined ||
   value === null ||
   (Array.isArray(value) && value.length === 0) ||

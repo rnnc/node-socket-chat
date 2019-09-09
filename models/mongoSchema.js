@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = ({
-  name: {
+  username: {
     type: String,
     required: true
   },
@@ -37,5 +37,7 @@ const MessageSchema = new Schema({
   }
 })
 
-module.exports = User = mongoose.model('users', UserSchema);
-module.exports = Message = mongoose.model('messages', MessageSchema);
+module.exports = {
+  User: mongoose.model('users', UserSchema),
+  Message: mongoose.model('messages', MessageSchema)
+}

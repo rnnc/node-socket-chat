@@ -1,7 +1,7 @@
 const Validator = require('validator');
 const isEmpty = require('./is-empty');
 
-module.exports = validateRegisterInput = (data) => {
+module.exports.validateRegisterInput = (data) => {
 
   let errors = {};
 
@@ -14,7 +14,7 @@ module.exports = validateRegisterInput = (data) => {
   const { username, email, password, password2 } = data;
 
   if (Validator.isEmpty(username))
-    errors.name = 'Username field is required';
+    errors.username = 'Username field is required';
 
   if (Validator.isEmail(email))
     errors.email = 'Email is invalid';
@@ -36,4 +36,31 @@ module.exports = validateRegisterInput = (data) => {
     isValid: isEmpty(errors)
   }
 
+}
+
+module.exports.validateLoginInput = (data) => {
+
+  let errors = {};
+
+  //ensure objects exist
+  data.username = !isEmpty(data.username) ? data.username : '';
+  data.email = !isEmpty(data.email) ? data.email : '';
+  data.password = !isEmpty(data.password) ? data.password : '';
+
+  if (Validator.isEmpty(data.username))
+    errors.email = 'Username is required';
+
+
+  if (!Validator.isLength(data.password, { min: 3, max: 20 }))
+    errors.password = 'Password must have 6 chars';
+
+
+  if (Validator.isEmpty(data.password))
+    errors.password = 'Password is required';
+
+
+  return {
+    errors,
+    isValid: isEmpty(errors)
+  }
 }

@@ -1,0 +1,1 @@
+module.exports.USERNAME_EXISTS = "USERNAME_EXISTS";

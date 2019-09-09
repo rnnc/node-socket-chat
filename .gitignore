@@ -5,3 +5,4 @@ client/node_modules
 *.log
 
 test.js
+test2.js
